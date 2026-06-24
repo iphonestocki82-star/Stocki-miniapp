@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ثبت آگهی فروش گوشی</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background-color: var(--tg-theme-bg-color, #f4f4f9);
+            color: var(--tg-theme-text-color, #333);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: var(--tg-theme-secondary-bg-color, #fff);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: Tahoma, Arial, sans-serif;
+        }
+        button {
+            width: 100%;
+            background-color: var(--tg-theme-button-color, #007bff);
+            color: var(--tg-theme-button-text-color, #fff);
+            border: none;
+            padding: 12px;
+            margin-top: 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>فرم ثبت آگهی فروش</h2>
+        <form id="sellForm">
+            
+            <label for="fullname">نام و نام خانوادگی:</label>
+            <input type="text" id="fullname" required placeholder="مثال: علی رضایی">
+
+            <label for="phone">شماره تماس:</label>
+            <input type="tel" id="phone" required placeholder="09123456789">
+
+            <label for="model">مدل گوشی:</label>
+            <select id="model" required>
+                <option value="" disabled selected>انتخاب کنید...</option>
+                <optgroup label="سری 17">
+                    <option value="iPhone 17 Pro Max">آیفون 17 پرو مکس</option>
+                    <option value="iPhone 17 Pro">آیفون 17 پرو</option>
+                    <option value="iPhone 17 Plus">آیفون 17 پلاس</option>
+                    <option value="iPhone 17">آیفون 17</option>
+                </optgroup>
+                <optgroup label="سری 16">
+                    <option value="iPhone 16 Pro Max">آیفون 16 پرو مکس</option>
+                    <option value="iPhone 16 Pro">آیفون 16 پرو</option>
+                    <option value="iPhone 16 Plus">آیفون 16 پلاس</option>
+                    <option value="iPhone 16">آیفون 16</option>
+                </optgroup>
+                <optgroup label="سری 15">
+                    <option value="iPhone 15 Pro Max">آیفون 15 پرو مکس</option>
+                    <option value="iPhone 15 Pro">آیفون 15 پرو</option>
+                    <option value="iPhone 15 Plus">آیفون 15 پلاس</option>
+                    <option value="iPhone 15">آیفون 15</option>
+                </optgroup>
+                <optgroup label="سری 14">
+                    <option value="iPhone 14 Pro Max">آیفون 14 پرو مکس</option>
+                    <option value="iPhone 14 Pro">آیفون 14 پرو</option>
+                    <option value="iPhone 14 Plus">آیفون 14 پلاس</option>
+                    <option value="iPhone 14">آیفون 14</option>
+                </optgroup>
+                <optgroup label="سری 13">
+                    <option value="iPhone 13 Pro Max">آیفون 13 پرو مکس</option>
+                    <option value="iPhone 13 Pro">آیفون 13 پرو</option>
+                    <option value="iPhone 13">آیفون 13</option>
+                    <option value="iPhone 13 Mini">آیفون 13 مینی</option>
+                </optgroup>
+                <optgroup label="سری 12">
+                    <option value="iPhone 12 Pro Max">آیفون 12 پرو مکس</option>
+                    <option value="iPhone 12 Pro">آیفون 12 پرو</option>
+                    <option value="iPhone 12">آیفون 12</option>
+                    <option value="iPhone 12 Mini">آیفون 12 مینی</option>
+                </optgroup>
+                <optgroup label="سری 11">
+                    <option value="iPhone 11 Pro Max">آیفون 11 پرو مکس</option>
+                    <option value="iPhone 11 Pro">آیفون 11 پرو</option>
+                    <option value="iPhone 11">آیفون 11</option>
+                </optgroup>
+                <optgroup label="سری X و قدیمی‌تر">
+                    <option value="iPhone XS Max">آیفون XS Max</option>
+                    <option value="iPhone XS">آیفون XS</option>
+                    <option value="iPhone XR">آیفون XR</option>
+                    <option value="iPhone X">آیفون X</option>
+                    <option value="iPhone SE">آیفون SE (تمامی نسل‌ها)</option>
+                    <option value="iPhone 8 Plus">آیفون 8 پلاس</option>
+                    <option value="iPhone 8">آیفون 8</option>
+                    <option value="Older Models">مدل‌های قدیمی‌تر</option>
+                </optgroup>
+            </select>
+
+            <label for="storage">حافظه دستگاه:</label>
+            <select id="storage" required>
+                <option value="" disabled selected>انتخاب کنید...</option>
+                <option value="64GB">64 گیگابایت</option>
+                <option value="128GB">128 گیگابایت</option>
+                <option value="256GB">256 گیگابایت</option>
+                <option value="512GB">512 گیگابایت</option>
+                <option value="1TB">1 ترابایت</option>
+            </select>
+
+            <label for="sim">تعداد سیم‌کارت (پارت‌نامبر):</label>
+            <select id="sim" required>
+                <option value="" disabled selected>انتخاب کنید...</option>
+                <option value="Single SIM">تک سیم‌کارت</option>
+                <option value="Dual SIM">دو سیم‌کارت</option>
+            </select>
+
+            <label for="registry">وضعیت رجیستری:</label>
+            <select id="registry" required>
+                <option value="" disabled selected>انتخاب کنید...</option>
+                <option value="دارد">دارد (آماده انتقال مالکیت)</option>
+                <option value="ندارد">ندارد</option>
+            </select>
+
+            <label for="battery">سایکل / سلامت باتری:</label>
+            <input type="text" id="battery" required placeholder="مثال: ۸۹٪ یا ۲۰۰ سایکل">
+
+            <label for="condition">وضعیت ظاهری و خط و خش:</label>
+            <textarea id="condition" rows="3" required placeholder="دستگاه باز شده؟ خط و خش دارد؟ توضیح دهید..."></textarea>
+
+            <label for="price">قیمت پیشنهادی (تومان):</label>
+            <input type="text" id="price" required placeholder="مثال: ۵۰,۰۰۰,۰۰۰">
+
+            <button type="submit">ثبت اطلاعات و ارسال ویدیو</button>
+        </form>
+    </div>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+
+        document.getElementById("sellForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+
+            let formData = {
+                fullname: document.getElementById("fullname").value,
+                phone: document.getElementById("phone").value,
+                model: document.getElementById("model").value,
+                storage: document.getElementById("storage").value,
+                sim: document.getElementById("sim").value,
+                registry: document.getElementById("registry").value,
+                battery: document.getElementById("battery").value,
+                condition: document.getElementById("condition").value,
+                price: document.getElementById("price").value
+            };
+
+            tg.showAlert("اطلاعات اولیه ثبت شد. لطفا پس از بسته شدن این پنجره، عکس و ویدیوی دستگاه را در چت ارسال کنید.", function() {
+                // ارسال اطلاعات به سمت وب‌هوک در آینده
+                console.log(formData);
+                tg.close(); 
+            });
+        });
+    </script>
+
+</body>
+</html>
