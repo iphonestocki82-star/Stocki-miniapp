@@ -56,6 +56,10 @@
         button:hover {
             opacity: 0.9;
         }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -159,7 +163,7 @@
             <label for="price">قیمت پیشنهادی (تومان):</label>
             <input type="text" id="price" required placeholder="مثال: ۵۰,۰۰۰,۰۰۰">
 
-            <button type="submit">ثبت اطلاعات و ارسال ویدیو</button>
+            <button type="submit" id="submitBtn">ثبت اطلاعات و ارسال ویدیو</button>
         </form>
     </div>
 
@@ -169,6 +173,10 @@
 
         document.getElementById("sellForm").addEventListener("submit", function(event) {
             event.preventDefault(); 
+            
+            let btn = document.getElementById("submitBtn");
+            btn.innerText = "در حال ارسال...";
+            btn.disabled = true;
 
             let formData = {
                 fullname: document.getElementById("fullname").value,
@@ -182,10 +190,23 @@
                 price: document.getElementById("price").value
             };
 
-            tg.showAlert("اطلاعات اولیه ثبت شد. لطفا پس از بسته شدن این پنجره، عکس و ویدیوی دستگاه را در چت ارسال کنید.", function() {
-                // ارسال اطلاعات به سمت وب‌هوک در آینده
-                console.log(formData);
-                tg.close(); 
+            // ارسال اطلاعات به Webhook
+            fetch("https://hook.eu1.make.com/qpp7tax251lt5x5yxo21fxhb0gg58qrr", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                tg.showAlert("اطلاعات اولیه ثبت شد. لطفا پس از بسته شدن این پنجره، عکس و ویدیوی دستگاه را در چت ارسال کنید.", function() {
+                    tg.close(); 
+                });
+            })
+            .catch(error => {
+                tg.showAlert("خطایی در ارتباط با سرور رخ داد. لطفا دوباره تلاش کنید.");
+                btn.innerText = "ثبت اطلاعات و ارسال ویدیو";
+                btn.disabled = false;
             });
         });
     </script>
