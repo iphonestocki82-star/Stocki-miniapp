@@ -65,7 +65,7 @@
 <body>
 
     <div class="container">
-        <h2>فرم ثبت آگهی فروش</h2>
+        <h2>فرم ارزیابی و فروش دستگاه</h2>
         <form id="sellForm">
             
             <label for="fullname">نام و نام خانوادگی:</label>
@@ -160,10 +160,10 @@
             <label for="condition">وضعیت ظاهری و خط و خش:</label>
             <textarea id="condition" rows="3" required placeholder="دستگاه باز شده؟ خط و خش دارد؟ توضیح دهید..."></textarea>
 
-            <label for="price">قیمت پیشنهادی (تومان):</label>
+            <label for="price">قیمت پیشنهادی شما (تومان):</label>
             <input type="text" id="price" required placeholder="مثال: ۵۰,۰۰۰,۰۰۰">
 
-            <button type="submit" id="submitBtn">ثبت اطلاعات و ارسال ویدیو</button>
+            <button type="submit" id="submitBtn">ثبت مشخصات و قیمت پیشنهادی</button>
         </form>
     </div>
 
@@ -199,13 +199,14 @@
                 body: JSON.stringify(formData)
             })
             .then(response => {
-                tg.showAlert("اطلاعات اولیه ثبت شد. لطفا پس از بسته شدن این پنجره، عکس و ویدیوی دستگاه را در چت ارسال کنید.", function() {
+                // پیام موفقیت جدید
+                tg.showAlert("اطلاعات شما با موفقیت در سیستم استوکی ثبت شد. در صورت تایید قیمت، کارشناسان ما جهت دریافت عکس و ویدیو با شما تماس خواهند گرفت.", function() {
                     tg.close(); 
                 });
             })
             .catch(error => {
                 tg.showAlert("خطایی در ارتباط با سرور رخ داد. لطفا دوباره تلاش کنید.");
-                btn.innerText = "ثبت اطلاعات و ارسال ویدیو";
+                btn.innerText = "ثبت مشخصات و قیمت پیشنهادی";
                 btn.disabled = false;
             });
         });
